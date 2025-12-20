@@ -151,9 +151,12 @@ class OrderController extends Controller
         }
 
         // Hanya bisa hapus yang completed atau cancelled
-        if (!in_array($order->status, ['completed', 'cancelled'])) {
+        $deletableStatuses = ['completed', 'cancelled'];
+
+        if (!in_array($order->status, $deletableStatuses)) {
             return back()->with('error', 'Hanya pesanan selesai atau batal yang bisa dihapus');
         }
+
 
         $order->delete();
 
