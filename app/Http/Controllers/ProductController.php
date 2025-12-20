@@ -23,9 +23,9 @@ class ProductController extends Controller
         // 2. Logika Search (Jika ada input 'search')
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%");
             });
         }
 
@@ -78,7 +78,14 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        $relatedProducts = Product::with('category')
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+
+        return view('products.show', compact('product', 'relatedProducts'));
     }
 
     public function destroy(Product $product)
@@ -88,7 +95,7 @@ class ProductController extends Controller
             $path = str_replace('/storage/', '', $product->thumbnail);
             Storage::disk('public')->delete($path);
         }
-        
+
         $product->delete();
         return redirect()->route('admin.products.index')
             ->with('success', 'Produk berhasil dihapus!');
