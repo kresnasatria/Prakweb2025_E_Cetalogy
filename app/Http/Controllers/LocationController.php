@@ -9,9 +9,8 @@ class LocationController extends Controller
 {
     public function getLocation(Request $request)
     {
-        // Dapatkan IP user (atau gunakan IP tertentu)
-        // Gunakan IP publik untuk testing di localhost
-        $ip = $request->get('ip', $request->ip()); // IP user asli
+        // Dapatkan IP user
+        $ip = $request->ip();
 
         // Panggil API ip-api.com
         $response = Http::get("http://ip-api.com/json/{$ip}");
