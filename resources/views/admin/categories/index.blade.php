@@ -31,7 +31,6 @@
             <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
                 <tr>
                     <th class="px-6 py-3">Nama Kategori</th>
-                    <th class="px-6 py-3">Icon</th>
                     <th class="px-6 py-3 text-right">Aksi</th>
                 </tr>
             </thead>
@@ -43,13 +42,9 @@
                             {{ $category->name }}
                         </td>
 
-                        <td class="px-6 py-4 text-gray-600">
-                            {{ $category->icon ?? '-' }}
-                        </td>
-
                         <td class="px-6 py-4 text-right space-x-3">
                             <a href="{{ route('admin.categories.edit', $category) }}"
-                               class="px-3 py-1.5 text-xs font-medium text-yellow-500 border border-yellow-500 rounded-md hover:bg-yellow-50 transition">
+                               class="px-3 py-1.5 text-xs font-medium text-yellow-500 border border-yellow-500 rounded-md hover:bg-blue-50 transition">
                                 Edit
                             </a>
 

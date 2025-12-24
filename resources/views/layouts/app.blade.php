@@ -13,7 +13,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
-    {{-- Tambahkan 'flex flex-col' agar footer bisa didorong ke bawah --}}
     <div class="min-h-screen bg-gray-100 flex flex-col justify-between">
         
         {{-- Wrapper Konten Atas --}}
@@ -33,8 +32,9 @@
             </main>
         </div>
 
-        {{-- Include Footer di Sini (Di luar wrapper konten atas) --}}
-        @include('layouts.footer')
+        @if (!request()->is('admin/*'))
+            @include('layouts.footer')
+        @endif
         
     </div>
 </body>

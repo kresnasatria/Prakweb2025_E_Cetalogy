@@ -25,7 +25,7 @@
     <!-- Right Side - Login Form -->
     <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center min-h-full">
         <div class="max-w-md mx-auto">
-            <h2 class="text-4xl font-bold text-gray-800 mb-2">Sign In</h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-2">Log In</h2>
             <p class="text-gray-500 mb-8">Access your account to continue shopping</p>
 
             @if (session('status'))

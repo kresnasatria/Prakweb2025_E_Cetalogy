@@ -15,7 +15,7 @@
 
             <a href="{{ route('login') }}"
                class="inline-block border-2 border-white text-white px-12 py-3 rounded-full hover:bg-white hover:text-blue-600 transition">
-                SIGN IN
+                LOG IN
             </a>
         </div>
     </div>
@@ -58,7 +58,7 @@
 
                 <div class="mt-6 text-center lg:hidden">
                     <a href="{{ route('login') }}" class="text-blue-600 font-medium">
-                        Already have an account? Sign In
+                        Already have an account? Log In
                     </a>
                 </div>
             </form>
