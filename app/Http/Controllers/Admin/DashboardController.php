@@ -13,19 +13,25 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalPemasukan = Order::where('status', 'completed')->sum('total_amount');
+        // Total pemasukan dari pesanan yang selesai
+        $totalPemasukan = Order::where('status', 'completed')
+            ->sum('total_amount');
+
+        // Data ringkasan
         $totalProduk = Product::count();
         $totalKategori = Category::count();
         $totalPesanan = Order::count();
         $totalUser = User::count();
 
+        // Pemasukan hari ini
         $pemasukanHariIni = Order::where('status', 'completed')
             ->whereDate('created_at', today())
             ->sum('total_amount');
+
+        // Pemasukan bulan ini
         $pemasukanBulanIni = Order::where('status', 'completed')
             ->whereMonth('created_at', now()->month)
             ->sum('total_amount');
-        $pemasukanTotal = $totalPemasukan;
 
         return view('admin.dashboard', [
             'totalPemasukan' => $totalPemasukan,
@@ -35,7 +41,6 @@ class DashboardController extends Controller
             'totalUser' => $totalUser,
             'pemasukanHariIni' => $pemasukanHariIni,
             'pemasukanBulanIni' => $pemasukanBulanIni,
-            'pemasukanTotal' => $pemasukanTotal,
         ]);
     }
 }

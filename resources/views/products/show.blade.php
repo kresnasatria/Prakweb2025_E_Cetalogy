@@ -74,7 +74,7 @@
             <div class="mt-12">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Produk Serupa</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    @include('products.partial.product-grid', ['products' => $relatedProducts])
+                    @include('products.partials.product-grid', ['products' => $relatedProducts])
                 </div>
             </div>
         </div>
