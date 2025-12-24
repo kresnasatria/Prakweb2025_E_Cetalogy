@@ -11,93 +11,76 @@
         </p>
     </div>
 
-    {{-- FORM --}}
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data"
-          class="w-full max-w-4xl">
+          class="w-full bg-white border border-gray-200 rounded-lg p-6">
 
         @csrf
 
-        {{-- NAMA PRODUK --}}
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">
-                Nama Produk
-            </label>
-            <input type="text" name="name" value="{{ old('name') }}"
-                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                   required>
-            @error('name')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{-- Kiri --}}
+            <div>
+                {{-- NAMA PRODUK --}}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Nama Produk</label>
+                    <input type="text" name="name" value="{{ old('name') }}"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                {{-- KATEGORI --}}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Kategori</label>
+                    <select name="category_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+            </div>
+
+            {{-- Kanan --}}
+            <div>
+                {{-- HARGA --}}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Harga</label>
+                    <input type="number" name="price" value="{{ old('price') }}"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    @error('price') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                {{-- STOK --}}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Stok</label>
+                    <input type="number" name="stock" value="{{ old('stock') }}"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                    @error('stock') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+            </div>
         </div>
 
-        {{-- KATEGORI --}}
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">
-                Kategori
-            </label>
-            <select name="category_id"
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                    required>
-                <option value="">-- Pilih Kategori --</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}"
-                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
-            @error('category_id')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- HARGA --}}
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">
-                Harga
-            </label>
-            <input type="number" name="price" value="{{ old('price') }}"
-                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                   required>
-            @error('price')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- STOK --}}
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">
-                Stok
-            </label>
-            <input type="number" name="stock" value="{{ old('stock') }}"
-                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                   required>
-            @error('stock')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
+        {{-- DESKRIPSI --}}
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700">Deskripsi Produk</label>
+            <textarea name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
         </div>
 
         {{-- GAMBAR --}}
         <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700">
-                Gambar Produk
-            </label>
-            <input type="file" name="image"
-                   class="mt-1 block w-full text-sm text-gray-600">
-            @error('image')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
+            <label class="block text-sm font-medium text-gray-700">Gambar Produk</label>
+            <input type="file" name="image" class="mt-1 block w-full text-sm text-gray-600 border border-gray-300 rounded-md p-2">
+            @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         {{-- BUTTON --}}
-        <div class="flex gap-3">
-            <button type="submit"
-                    class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
-                Simpan
+        <div class="flex gap-3 pt-4 border-t">
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                Simpan Produk
             </button>
-
-            <a href="{{ route('admin.products.index') }}"
-               class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 transition">
+            <a href="{{ route('admin.products.index') }}" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-300 transition">
                 Batal
             </a>
         </div>

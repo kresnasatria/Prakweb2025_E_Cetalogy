@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="px-6 py-8 w-full max-w-3xl">
+<div class="px-6 py-8 w-full">
 
     {{-- HEADER --}}
     <div class="mb-6">
@@ -13,7 +13,7 @@
 
     {{-- FORM --}}
     <form action="{{ route('admin.categories.store') }}" method="POST"
-          class="bg-white border border-gray-200 rounded-lg p-6">
+          class="bg-white border border-gray-200 rounded-lg p-6 w-full">
 
         @csrf
 
@@ -22,37 +22,17 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">
                 Nama Kategori
             </label>
-            <input type="text"
-                   name="name"
-                   value="{{ old('name') }}"
-                   required
+            <input type="text" name="name" value="{{ old('name') }}" required
                    class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-            @error('name')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- ICON --}}
-        <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-                Icon (opsional)
-            </label>
-            <input type="text"
-                   name="icon"
-                   value="{{ old('icon') }}"
-                   placeholder="contoh: fa-shirt / emoji / teks"
-                   class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+            @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         {{-- ACTION --}}
         <div class="flex gap-3">
-            <button type="submit"
-                    class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition">
+            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition">
                 Simpan
             </button>
-
-            <a href="{{ route('admin.categories.index') }}"
-               class="bg-gray-200 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-300 transition">
+            <a href="{{ route('admin.categories.index') }}" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-300 transition">
                 Batal
             </a>
         </div>
