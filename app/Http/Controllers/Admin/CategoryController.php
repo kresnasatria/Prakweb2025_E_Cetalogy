@@ -44,7 +44,6 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
-            'icon' => 'nullable|string|max:255',
         ]);
 
         if ($category->name !== $validated['name']) {
