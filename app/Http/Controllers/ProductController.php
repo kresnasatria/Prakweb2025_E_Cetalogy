@@ -59,7 +59,6 @@ class ProductController extends Controller
         }
 
         // 6. Ambil data (12 produk per halaman)
-        // withQueryString() penting agar saat pindah halaman, search tidak hilang
         $products = $query->paginate(12)->withQueryString();
 
         // 7. Ambil daftar kategori untuk dropdown
