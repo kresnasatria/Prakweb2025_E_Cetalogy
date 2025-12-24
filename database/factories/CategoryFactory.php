@@ -15,15 +15,12 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-// Jangan lupa import di paling atas: use Illuminate\Support\Str;
-
 public function definition(): array
 {
-    $name = fake()->unique()->word(); // Menghasilkan 1 kata unik
+    $name = fake()->unique()->word(); 
     return [
         'name' => ucfirst($name),
         'slug' => Str::slug($name),
-        'icon' => fake()->imageUrl(64, 64, 'business', true), // Dummy image url
     ];
 }
 }

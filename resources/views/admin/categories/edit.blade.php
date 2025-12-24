@@ -35,17 +35,6 @@
             @enderror
         </div>
 
-        {{-- ICON --}}
-        <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-                Icon (opsional)
-            </label>
-            <input type="text"
-                   name="icon"
-                   value="{{ old('icon', $category->icon) }}"
-                   class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-        </div>
-
         {{-- ACTION --}}
         <div class="flex gap-3">
             <button type="submit"
