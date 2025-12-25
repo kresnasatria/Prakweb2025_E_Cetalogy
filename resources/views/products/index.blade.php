@@ -88,9 +88,9 @@
              x-data="{ 
                 activeSlide: 0,
                 slides: [
-                    { title: 'Selamat Datang di Toko Laravel', text: 'Temukan produk fashion berkualitas dengan harga terbaik.', color: 'from-blue-600 to-indigo-700', btn: 'Daftar Sekarang', link: '{{ route('login') }}' },
-                    { title: 'Koleksi Terbaru 2025', text: 'Tampil gaya dengan tren fashion terkini.', color: 'from-purple-600 to-pink-600', btn: 'Lihat Produk', link: '{{ route('login') }}' },
-                    { title: 'Diskon Spesial Hari Ini', text: 'Nikmati gratis ongkir untuk pembelian pertama Anda.', color: 'from-green-600 to-teal-600', btn: 'Belanja Yuk', link: '{{ route('login') }}' }
+                    { title: 'Halo, Ini GetReloved', text: 'Lebih dari sekadar outfit, ini pilihan.',image: '{{ asset('slider/slide1.jpg') }}' , btn: 'Daftar Sekarang', link: '{{ route('login') }}' },
+                    { title: 'Second Hand, Still On Trend', text: 'Mix, match, repeat.', image: '{{ asset('slider/slide2.jpg') }}', btn: 'Lihat Produk', link: '{{ route('login') }}' },
+                    { title: 'Diskon Spesial Setiap Hari', text: 'Nikmati gratis ongkir untuk setiap pembelian.', image: '{{ asset('slider/slide3.jpg') }}', btn: 'Belanja Yuk', link: '{{ route('login') }}' }
                 ],
                 next() { this.activeSlide = (this.activeSlide + 1) % this.slides.length },
                 prev() { this.activeSlide = (this.activeSlide - 1 + this.slides.length) % this.slides.length },
@@ -99,29 +99,41 @@
              x-init="init()">
             
             {{-- Slide Track --}}
-            <div class="relative h-[600px] overflow-hidden">
-                <template x-for="(slide, index) in slides" :key="index">
-                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r text-white flex items-center justify-center transition-opacity duration-1000 ease-in-out"
-                         :class="slide.color"
-                         x-show="activeSlide === index"
-                         x-transition:enter="transition ease-out duration-1000"
-                         x-transition:enter-start="opacity-0 transform scale-95"
-                         x-transition:enter-end="opacity-100 transform scale-100"
-                         x-transition:leave="transition ease-in duration-1000"
-                         x-transition:leave-start="opacity-100 transform scale-100"
-                         x-transition:leave-end="opacity-0 transform scale-105">
-                        
-                        <div class="text-center px-4 max-w-4xl">
-                            <h1 class="text-6xl font-extrabold mb-6 leading-tight" x-text="slide.title"></h1>
-                            <p class="text-2xl text-white/90 mb-10" x-text="slide.text"></p>
-                            <a :href="slide.link" 
-                               class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1"
-                               x-text="slide.btn">
-                            </a>
-                        </div>
-                    </div>
-                </template>
+        <div class="relative h-[600px] overflow-hidden">
+            <template x-for="(slide, index) in slides" :key="index">
+                <div class="absolute inset-0 w-full h-full text-white flex items-center justify-center transition-opacity duration-1000 ease-in-out"
+                    x-show="activeSlide === index"
+                    x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0 transform scale-95"
+                    x-transition:enter-end="opacity-100 transform scale-100"
+                    x-transition:leave="transition ease-in duration-1000"
+                    x-transition:leave-start="opacity-100 transform scale-100"
+                    x-transition:leave-end="opacity-0 transform scale-105">
+
+            {{-- Background Image --}}
+            <div class="absolute inset-0 bg-cover bg-center"
+                 :style="`background-image: url('${slide.image}')`">
             </div>
+
+            {{-- Overlay sama Blur --}}
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 backdrop-blur-sm"></div>
+
+
+            <div class="relative z-10 text-center px-4 max-w-4xl">
+                <h1 class="text-6xl font-extrabold mb-6 leading-tight"
+                    x-text="slide.title"></h1>
+                <p class="text-2xl text-white/90 mb-10"
+                   x-text="slide.text"></p>
+                <a :href="slide.link"
+                   class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1"
+                   x-text="slide.btn">
+                </a>
+            </div>
+
+        </div>
+    </template>
+</div>
 
             {{-- Navigasi Carousel --}}
             <button @click="prev()" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-sm transition">
