@@ -29,7 +29,7 @@
 
     {{-- SEARCH FORM --}}
     <form method="GET" action="{{ route('admin.products.index') }}" class="mb-6 flex items-center gap-2">
-        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk atau kategori..." class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..." class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">Cari</button>
         @if(request('search'))
             <a href="{{ route('admin.products.index') }}" class="ml-2 text-sm text-gray-500 hover:underline">Reset</a>
