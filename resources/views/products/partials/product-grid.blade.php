@@ -16,8 +16,10 @@
                 Rp {{ number_format($product->price, 0, ',', '.') }}
             </p>
             <p class="text-sm text-gray-500 mt-1"> @php
-                            $status = $product->status ?? (($product->stock ?? 0) > 0 ? 'available' : 'sold');
-                        @endphp
+                        
+                                                        $stock = (int) ($product->stock ?? 0);
+                                                        $status = ($stock <= 0 || ($product->status ?? null) === 'sold') ? 'sold' : 'available';
+                                                     @endphp
 
                         @if($status === 'sold')
                             <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded bg-red-100 text-red-700">
