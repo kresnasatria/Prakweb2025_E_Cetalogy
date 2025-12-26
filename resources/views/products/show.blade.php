@@ -2,8 +2,9 @@
 
 @section('content')
         @php
-            $status = $product->status ?? (($product->stock ?? 0) > 0 ? 'available' : 'sold');
-             $isSold = $status === 'sold';
+            $stock = (int) ($product->stock ?? 0);
+            $status = ($stock <= 0 || ($product->status ?? null) === 'sold') ? 'sold' : 'available';
+            $isSold = $status === 'sold';
         @endphp
 
 
