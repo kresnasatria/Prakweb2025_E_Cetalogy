@@ -12,9 +12,30 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->latest()->paginate(10);
+        $search = $request->input('search');
+        $products = Product::with('category')
+            ->when($search, function ($query, $search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('name', 'like', "%$search%")
+                      ->orWhereHas('category', function($q2) use ($search) {
+                          $q2->where('name', 'like', "%$search%") ;
+                      });
+                });
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        if ($request->ajax() || $request->input('ajax')) {
+            $html = view('admin.products.partials.table', compact('products'))->render();
+            $pagination = $products->links('pagination::tailwind')->toHtml();
+            return response()->json([
+                'html' => $html,
+                'pagination' => $pagination,
+            ]);
+        }
         return view('admin.products.index', compact('products'));
     }
 

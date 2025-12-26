@@ -9,9 +9,25 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::withCount('products')->latest()->paginate(10);
+        $search = $request->input('search');
+        $categories = Category::withCount('products')
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%$search%");
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        if ($request->ajax() || $request->input('ajax')) {
+            $html = view('admin.categories.partials.table', compact('categories'))->render();
+            $pagination = $categories->links('pagination::tailwind')->toHtml();
+            return response()->json([
+                'html' => $html,
+                'pagination' => $pagination,
+            ]);
+        }
         return view('admin.categories.index', compact('categories'));
     }
 

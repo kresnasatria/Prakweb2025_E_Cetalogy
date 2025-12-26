@@ -30,6 +30,16 @@
         </div>
     @endif
 
+
+    {{-- SEARCH FORM --}}
+    <form method="GET" action="{{ route('admin.categories.index') }}" class="mb-6 flex items-center gap-2">
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kategori..." class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">Cari</button>
+        @if(request('search'))
+            <a href="{{ route('admin.categories.index') }}" class="ml-2 text-sm text-gray-500 hover:underline">Reset</a>
+        @endif
+    </form>
+
     {{-- TABLE --}}
     <div class="overflow-x-auto bg-white border border-gray-200 rounded-lg">
         <table class="min-w-full text-sm text-left">
@@ -39,50 +49,20 @@
                     <th class="px-6 py-3 text-right">Aksi</th>
                 </tr>
             </thead>
-
             <tbody class="divide-y">
-                @forelse ($categories as $category)
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">
-                            {{ $category->name }}
-                        </td>
-
-                        <td class="px-6 py-4 text-right space-x-3">
-                            <a href="{{ route('admin.categories.edit', $category) }}"
-                               class="px-3 py-1.5 text-xs font-medium text-yellow-500 border border-yellow-500 rounded-md hover:bg-blue-50 transition">
-                                Edit
-                            </a>
-
-                            <form action="{{ route('admin.categories.destroy', $category) }}"
-                                  method="POST"
-                                  class="inline"
-                                  onsubmit="return confirm('Yakin hapus kategori ini?')">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                        class="px-3 py-1.5 text-xs font-medium text-red-600 border border-red-600 rounded-md hover:bg-red-50 transition">
-                                    Hapus
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3"
-                            class="px-6 py-6 text-center text-gray-500">
-                            Belum ada kategori
-                        </td>
-                    </tr>
-                @endforelse
+                @include('admin.categories.partials.table', ['categories' => $categories])
             </tbody>
         </table>
     </div>
 
+
     {{-- PAGINATION --}}
     <div class="mt-6">
-        {{ $categories->links() }}
+        {!! $categories->links('pagination::tailwind') !!}
     </div>
+
+    {{-- LIVE SEARCH SCRIPT --}}
+    <script src="/js/admin-category-live-search.js"></script>
 
 </div>
 @endsection
