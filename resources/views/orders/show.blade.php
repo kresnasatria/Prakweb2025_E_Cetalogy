@@ -66,6 +66,22 @@
                 <p class="text-gray-600">Telepon: {{ $order->phone }}</p>
                 @if($order->notes) <p class="text-gray-600 mt-2">Catatan: {{ $order->notes }}</p> @endif
             </div>
+                
+                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Informasi Pengiriman</h3>
+                <p class="text-gray-600 mb-2"> Ekspedisi:
+                <span class="font-medium text-gray-800"> {{ $order->shipping_courier ?? '-' }}
+            </span>
+        </p>
+
+    <p class="text-gray-600">
+        Nomor Resi:
+        <span class="font-medium text-gray-800">
+            {{ $order->tracking_number ?? '-' }}
+        </span>
+    </p>
+</div>
+
 
             @if($order->status === 'pending')
             <div class="bg-white rounded-lg shadow p-6 mt-6 border-2 border-blue-100">
@@ -104,7 +120,7 @@
                 @if($order->status === 'pending')
                     <form action="{{ route('orders.cancel', $order) }}" method="POST">
                         @csrf @method('PATCH')
-                        <button type="submit" class="w-full bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 mb-3" onclick="return confirm('Batalkan pesanan?')">Batalkan Pesanan</button>
+                        <button type="submit" class="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mb-3" onclick="return confirm('Batalkan pesanan?')">Batalkan Pesanan</button>
                     </form>
                 @endif
 
