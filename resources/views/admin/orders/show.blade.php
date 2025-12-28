@@ -84,6 +84,40 @@
                 </div>
             </div>
 
+            {{-- INFORMASI PENGIRIMAN (ADMIN) --}}
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    Informasi Pengiriman
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-1">
+                            Ekspedisi
+                        </label>
+                        <input type="text"
+                            placeholder="Contoh: JNE, SiCepat, AnterAja"
+                            class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-1">
+                            Nomor Resi
+                        </label>
+                        <input type="text"
+                            placeholder="Masukkan nomor resi"
+                            class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+
+                </div>
+
+                <p class="text-xs text-gray-500 mt-3">
+                    Data ini akan ditampilkan ke customer pada halaman detail pesanan.
+                </p>
+            </div>
+
+
             {{-- ITEM PESANAN --}}
             <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <div class="px-6 py-4 border-b">
