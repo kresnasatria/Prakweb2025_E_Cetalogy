@@ -13,7 +13,7 @@
         </div>
 
         <a href="{{ route('admin.products.create') }}"
-           class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
+           class="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition">
             + Tambah Produk
         </a>
     </div>
@@ -28,9 +28,9 @@
     {{-- SEARCH FORM --}}
     <form method="GET" action="{{ route('admin.products.index') }}" class="mb-6 flex items-center gap-2">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
-               class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+               class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-gray-500" />
         <button type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
+                class="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition">
             Cari
         </button>
 
