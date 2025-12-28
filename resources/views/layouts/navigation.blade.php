@@ -111,8 +111,8 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition">Log in</a>
-                    <a href="{{ route('register') }}" class="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition shadow-sm">Register</a>
+                    <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-gray-600 transition">Masuk</a>
+                    <a href="{{ route('register') }}" class="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-gray-700 transition shadow-sm">Daftar</a>
                 @endauth
             </div>
 

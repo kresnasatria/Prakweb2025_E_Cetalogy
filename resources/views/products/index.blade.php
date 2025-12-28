@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 @extends('layouts.app')
 
 @section('content')
@@ -186,17 +188,23 @@
         {{-- Info Promo --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div class="bg-white rounded-lg shadow p-6 text-center hover:-translate-y-1 transition transform duration-300">
-                <div class="text-4xl mb-3">📦</div>
+            <span class="material-symbols-outlined text-4xl mb-3 text-blue-600">
+                local_shipping
+            </span>
                 <h3 class="font-bold text-gray-800 mb-2">Gratis Ongkir</h3>
                 <p class="text-gray-500 text-sm">Pengiriman gratis untuk pembelian tertentu</p>
             </div>
             <div class="bg-white rounded-lg shadow p-6 text-center hover:-translate-y-1 transition transform duration-300">
-                <div class="text-4xl mb-3">✅</div>
+            <span class="material-symbols-outlined text-4xl mb-3 text-green-600">
+                verified
+            </span>
                 <h3 class="font-bold text-gray-800 mb-2">Produk Original</h3>
                 <p class="text-gray-500 text-sm">100% produk asli berkualitas tinggi</p>
             </div>
             <div class="bg-white rounded-lg shadow p-6 text-center hover:-translate-y-1 transition transform duration-300">
-                <div class="text-4xl mb-3">💳</div>
+            <span class="material-symbols-outlined text-4xl mb-3 text-purple-600">
+                credit_card
+            </span>
                 <h3 class="font-bold text-gray-800 mb-2">Pembayaran Aman</h3>
                 <p class="text-gray-500 text-sm">Transaksi dijamin aman dan terpercaya</p>
             </div>
@@ -404,5 +412,28 @@
             });
         });
 </script>
+
+<style>
+    /* Pagination container */
+    nav[role="navigation"] span,
+    nav[role="navigation"] a {
+        background-color: #ffffff !important;
+        color: #4b5563 !important; /* gray-600 */
+        border: 1px solid #e5e7eb !important; /* gray-200 */
+    }
+
+    /* Hover */
+    nav[role="navigation"] a:hover {
+        background-color: #f3f4f6 !important; /* gray-100 */
+        color: #111827 !important; /* gray-900 */
+    }
+
+    /* Active page */
+    nav[role="navigation"] span[aria-current="page"] span {
+        background-color: #e5e7eb !important; /* gray-200 */
+        color: #111827 !important;
+        font-weight: 600;
+    }
+</style>
 
 @endsection
