@@ -107,6 +107,29 @@
     <div class="mt-6">
         {{ $orders->links() }}
     </div>
-
 </div>
+
+<style>
+    /* Pagination container */
+    nav[role="navigation"] span,
+    nav[role="navigation"] a {
+        background-color: #ffffff !important;
+        color: #4b5563 !important; /* gray-600 */
+        border: 1px solid #e5e7eb !important; /* gray-200 */
+    }
+
+    /* Hover */
+    nav[role="navigation"] a:hover {
+        background-color: #f3f4f6 !important; /* gray-100 */
+        color: #111827 !important; /* gray-900 */
+    }
+
+    /* Active page */
+    nav[role="navigation"] span[aria-current="page"] span {
+        background-color: #e5e7eb !important; /* gray-200 */
+        color: #111827 !important;
+        font-weight: 600;
+    }
+</style>
+
 @endsection
