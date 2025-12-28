@@ -75,7 +75,7 @@
                         <td class="px-6 py-4 text-right">
                             <div class="inline-flex gap-2">
                                 <a href="{{ route('admin.orders.show', $order) }}"
-                                   class="px-3 py-1.5 text-xs font-medium text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50 transition">
+                                   class="px-3 py-1.5 text-xs font-medium text-black border border-gray-600 rounded-md hover:bg-blue-50 transition">
                                     Detail
                                 </a>
 
@@ -114,19 +114,19 @@
     nav[role="navigation"] span,
     nav[role="navigation"] a {
         background-color: #ffffff !important;
-        color: #4b5563 !important; /* gray-600 */
-        border: 1px solid #e5e7eb !important; /* gray-200 */
+        color: #4b5563 !important; 
+        border: 1px solid #e5e7eb !important; 
     }
 
     /* Hover */
     nav[role="navigation"] a:hover {
-        background-color: #f3f4f6 !important; /* gray-100 */
-        color: #111827 !important; /* gray-900 */
+        background-color: #f3f4f6 !important; 
+        color: #111827 !important; 
     }
 
     /* Active page */
     nav[role="navigation"] span[aria-current="page"] span {
-        background-color: #e5e7eb !important; /* gray-200 */
+        background-color: #e5e7eb !important; 
         color: #111827 !important;
         font-weight: 600;
     }

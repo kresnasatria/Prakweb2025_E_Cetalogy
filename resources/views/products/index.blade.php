@@ -307,15 +307,15 @@
             display: inline-block;
             margin-top: 18px;
             font-size: 1rem;
-            color: #2563eb;
+            color: #000000;
             font-weight: 500;
-            border: 1px solid #2563eb;
+            border: 1px solid #000000;
             border-radius: 8px;
             padding: 8px 18px;
             transition: all 0.2s;
         }
         .maps-link:hover {
-            background: #2563eb;
+            background: #000000;
             color: white;
         }
     </style>

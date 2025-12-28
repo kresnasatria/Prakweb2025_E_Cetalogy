@@ -13,7 +13,7 @@
         </div>
 
         <a href="{{ route('admin.categories.create') }}"
-           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+           class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">
             + Tambah Kategori
         </a>
     </div>
@@ -33,8 +33,8 @@
 
     {{-- SEARCH FORM --}}
     <form method="GET" action="{{ route('admin.categories.index') }}" class="mb-6 flex items-center gap-2">
-        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kategori..." class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">Cari</button>
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kategori..." class="px-3 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-gray-500" />
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition">Cari</button>
         @if(request('search'))
             <a href="{{ route('admin.categories.index') }}" class="ml-2 text-sm text-gray-500 hover:underline">Reset</a>
         @endif
@@ -71,19 +71,19 @@
     nav[role="navigation"] span,
     nav[role="navigation"] a {
         background-color: #ffffff !important;
-        color: #4b5563 !important; /* gray-600 */
-        border: 1px solid #e5e7eb !important; /* gray-200 */
+        color: #4b5563 !important; 
+        border: 1px solid #e5e7eb !important;
     }
 
     /* Hover */
     nav[role="navigation"] a:hover {
-        background-color: #f3f4f6 !important; /* gray-100 */
-        color: #111827 !important; /* gray-900 */
+        background-color: #f3f4f6 !important; 
+        color: #111827 !important; 
     }
 
     /* Active page */
     nav[role="navigation"] span[aria-current="page"] span {
-        background-color: #e5e7eb !important; /* gray-200 */
+        background-color: #e5e7eb !important; 
         color: #111827 !important;
         font-weight: 600;
     }

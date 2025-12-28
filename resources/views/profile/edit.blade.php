@@ -27,7 +27,7 @@
                         <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
                         @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Simpan</button>
+                    <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">Simpan</button>
                 </form>
             </div>
 

@@ -76,7 +76,7 @@
                     @auth
                         <a href="{{ route('orders.checkout') }}" class="block w-full text-center bg-black text-white py-3 rounded-md hover:bg-gray-700 font-semibold mb-2">Checkout</a>
                     @else
-                        <a href="{{ route('login') }}" class="block w-full text-center bg-blue-600 text-black py-3 rounded-md hover:bg-blue-700 font-semibold mb-2">Login untuk Checkout</a>
+                        <a href="{{ route('login') }}" class="block w-full text-center bg-black text-white py-3 rounded-md hover:bg-gray-700 font-semibold mb-2">Login untuk Checkout</a>
                     @endauth
                     <form action="{{ route('cart.clear') }}" method="POST">
                         @csrf
@@ -88,7 +88,7 @@
     @else
         <div class="bg-white rounded-lg shadow p-12 text-center">
             <p class="text-gray-500 text-lg mb-4">Keranjang belanja kosong</p>
-            <a href="{{ route('products.index') }}" class="bg-blue-600 text-black px-6 py-2 rounded-md hover:bg-blue-700">Lanjut Belanja</a>
+            <a href="{{ route('products.index') }}" class="bg-gray-900 text-white px-6 py-2 rounded-md hover:bg-gray-700">Lanjut Belanja</a>
         </div>
     @endif
 @endsection
