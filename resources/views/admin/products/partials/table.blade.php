@@ -1,7 +1,7 @@
 @forelse ($products as $index => $product)
     <tr class="hover:bg-gray-50">
         <td class="px-4 py-3 border-b">
-            {{ $index + 1 }}
+            {{ $products->firstItem() + $index }}
         </td>
         <td class="px-4 py-3 border-b font-medium">
             {{ $product->name }}
