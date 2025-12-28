@@ -23,30 +23,37 @@
                     <form action="{{ route('cart.updateAll') }}" method="POST" id="cart-form">
                         @csrf
                         @foreach ($items as $item)
-                            <div class="p-4 border-b flex items-center justify-between">
+                           <div class="p-4 border-b flex items-center justify-between">
+                                {{-- kiri (INFO PRODUK)--}}
                                 <div class="flex items-center gap-4">
                                     <img src="{{ $item['product']->thumbnail ?? 'https://placehold.co/80x80' }}"
-                                         alt="{{ $item['product']->name }}" class="w-16 h-16 object-cover rounded">
+                                        alt="{{ $item['product']->name }}"
+                                        class="w-16 h-16 object-cover rounded">
                                     <div>
                                         <p class="font-semibold">{{ $item['product']->name }}</p>
-                                        <p class="text-gray-500 text-sm">Rp {{ number_format($item['product']->price, 0, ',', '.') }}</p>
+                                        <p class="text-gray-500 text-sm">
+                                            Rp {{ number_format($item['product']->price, 0, ',', '.') }}
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <input type="number" name="quantities[{{ $item['product']->id }}]"
-                                           value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->stock }}"
-                                           class="w-20 border border-gray-300 rounded px-2 py-1 text-center">
+
+                                {{-- knan (HAPUS + HARGA) --}}
+                                <div class="flex items-center gap-4">
                                     <button type="button"
                                             onclick="if(confirm('Hapus item?')) document.getElementById('remove-form-{{ $item['product']->id }}').submit();"
                                             class="bg-red-500 text-black px-3 py-1 rounded text-sm hover:bg-red-600">
                                         Hapus
                                     </button>
+
+                                    <p class="font-semibold">
+                                        Rp {{ number_format($item['subtotal'], 0, ',', '.') }}
+                                    </p>
                                 </div>
-                                <p class="font-semibold">Rp {{ number_format($item['subtotal'], 0, ',', '.') }}</p>
                             </div>
+
                         @endforeach
                         <div class="p-4 flex gap-2">
-                            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan Perubahan</button>
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700">Simpan Perubahan</button>
                         </div>
                     </form>
 
@@ -67,13 +74,13 @@
                         <span>Rp {{ number_format($total, 0, ',', '.') }}</span>
                     </div>
                     @auth
-                        <a href="{{ route('orders.checkout') }}" class="block w-full text-center bg-green-600 text-black py-3 rounded-md hover:bg-green-700 font-semibold mb-2">Checkout</a>
+                        <a href="{{ route('orders.checkout') }}" class="block w-full text-center bg-black text-white py-3 rounded-md hover:bg-gray-700 font-semibold mb-2">Checkout</a>
                     @else
                         <a href="{{ route('login') }}" class="block w-full text-center bg-blue-600 text-black py-3 rounded-md hover:bg-blue-700 font-semibold mb-2">Login untuk Checkout</a>
                     @endauth
                     <form action="{{ route('cart.clear') }}" method="POST">
                         @csrf
-                        <button type="submit" class="w-full bg-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-400" onclick="return confirm('Kosongkan keranjang?')">Kosongkan Keranjang</button>
+                        <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-800" onclick="return confirm('Kosongkan keranjang?')">Kosongkan Keranjang</button>
                     </form>
                 </div>
             </div>
