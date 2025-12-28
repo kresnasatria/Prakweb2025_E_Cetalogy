@@ -50,7 +50,7 @@
                                 @elseif($order->status === 'completed') bg-green-100 text-green-800
                                 @else bg-red-100 text-red-800
                                 @endif">
-                            <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Tertunda</option>
                             <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Diproses</option>
                             <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Selesai</option>
                             <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
@@ -84,38 +84,52 @@
                 </div>
             </div>
 
-            {{-- INFORMASI PENGIRIMAN (ADMIN) --}}
-            <div class="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                    Informasi Pengiriman
-                </h3>
+           {{-- INFORMASI PENGIRIMAN (ADMIN) --}}
+            <form method="POST" action="#">
+                @csrf
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                        Informasi Pengiriman
+                    </h3>
 
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">
-                            Ekspedisi
-                        </label>
-                        <input type="text"
-                            placeholder="Contoh: JNE, SiCepat, AnterAja"
-                            class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-1">
+                                Ekspedisi
+                            </label>
+                            <input type="text"
+                                name="shipping_courier"
+                                placeholder="Contoh: JNE, SiCepat, AnterAja"
+                                class="w-full rounded-md border-gray-300 focus:border-gray-900 focus:ring-gray-900">
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-1">
+                                Nomor Resi
+                            </label>
+                            <input type="text"
+                                name="shipping_tracking_number"
+                                placeholder="Masukkan nomor resi"
+                                class="w-full rounded-md border-gray-300 focus:border-gray-900 focus:ring-gray-900">
+                        </div>
+
                     </div>
 
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">
-                            Nomor Resi
-                        </label>
-                        <input type="text"
-                            placeholder="Masukkan nomor resi"
-                            class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                    <div class="flex justify-start">
+                        <button type="submit"
+                                class="bg-black text-white px-5 py-2 rounded-md text-sm hover:bg-gray-800 transition">
+                            Simpan Informasi Pengiriman
+                        </button>
                     </div>
 
+                    <p class="text-xs text-gray-500 mt-3">
+                        Data ini akan ditampilkan ke customer pada halaman detail pesanan.
+                    </p>
                 </div>
+            </form>
 
-                <p class="text-xs text-gray-500 mt-3">
-                    Data ini akan ditampilkan ke customer pada halaman detail pesanan.
-                </p>
-            </div>
 
 
             {{-- ITEM PESANAN --}}
@@ -174,7 +188,7 @@
                 </div>
 
                 <a href="{{ route('admin.orders.invoice', $order) }}"
-                   class="block w-full text-center bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition mb-3">
+                   class="block w-full text-center bg-black text-white py-2 rounded-md hover:bg-gray-700 transition mb-3">
                     Download Invoice PDF
                 </a>
 
