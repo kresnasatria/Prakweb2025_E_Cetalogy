@@ -98,3 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// --- 6. ADMIN SHIPPING ---
+Route::post('admin/orders/{order}/shipping', [\App\Http\Controllers\Admin\OrderController::class, 'updateShipping'])
+    ->name('admin.orders.shipping');
