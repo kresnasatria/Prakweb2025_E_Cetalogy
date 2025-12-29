@@ -56,7 +56,7 @@ class OrderController extends Controller
             foreach ($order->orderItems as $item) {
                 $product = Product::find($item->product_id);
                 
-                // Cek apakah stok mencukupi
+                // Cek stok 
                 if ($product->stock < $item->quantity) {
                     return back()->with('error', "Stok {$product->name} tidak mencukupi untuk mengaktifkan kembali pesanan");
                 }
@@ -73,6 +73,24 @@ class OrderController extends Controller
 
         return back()->with('success', 'Status pesanan diperbarui menjadi ' . ucfirst($newStatus));
     }
+
+
+    /**
+     * Update informasi pengiriman
+     */
+    public function updateShipping(Request $request, \App\Models\Order $order)
+        {
+            $data = $request->validate([
+                'shipping_courier' => 'required|string|max:100',
+                'shipping_tracking_number' => 'required|string|max:100',
+            ]);
+
+            $order->update($data); 
+
+            return back()->with('success', 'Informasi pengiriman berhasil disimpan.');
+        }
+
+
 
     /**
      * Hapus pesanan

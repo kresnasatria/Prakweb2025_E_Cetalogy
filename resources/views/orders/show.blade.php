@@ -77,8 +77,9 @@
     <p class="text-gray-600">
         Nomor Resi:
         <span class="font-medium text-gray-800">
-            {{ $order->tracking_number ?? '-' }}
+            {{ $order->shipping_tracking_number ?? '-' }}
         </span>
+
     </p>
 </div>
 

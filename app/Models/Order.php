@@ -17,6 +17,9 @@ class Order extends Model
         'shipping_address',
         'phone',
         'notes',
+        'shipping_courier',
+        'shipping_tracking_number',
+
     ];
 
     // ==================== RELASI ====================

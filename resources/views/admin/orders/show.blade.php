@@ -85,36 +85,36 @@
             </div>
 
            {{-- INFORMASI PENGIRIMAN (ADMIN) --}}
-            <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin.orders.shipping', $order->id) }}">
                 @csrf
 
                 <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                        Informasi Pengiriman
-                    </h3>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Informasi Pengiriman</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
-
                         <div>
-                            <label class="block font-medium text-gray-700 mb-1">
-                                Ekspedisi
-                            </label>
+                            <label class="block font-medium text-gray-700 mb-1">Ekspedisi</label>
                             <input type="text"
                                 name="shipping_courier"
+                                value="{{ old('shipping_courier', $order->shipping_courier) }}"
                                 placeholder="Contoh: JNE, SiCepat, AnterAja"
                                 class="w-full rounded-md border-gray-300 focus:border-gray-900 focus:ring-gray-900">
+                            @error('shipping_courier')
+                                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
-                            <label class="block font-medium text-gray-700 mb-1">
-                                Nomor Resi
-                            </label>
+                            <label class="block font-medium text-gray-700 mb-1">Nomor Resi</label>
                             <input type="text"
                                 name="shipping_tracking_number"
+                                value="{{ old('shipping_tracking_number', $order->shipping_tracking_number) }}"
                                 placeholder="Masukkan nomor resi"
                                 class="w-full rounded-md border-gray-300 focus:border-gray-900 focus:ring-gray-900">
+                            @error('shipping_tracking_number')
+                                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
-
                     </div>
 
                     <div class="flex justify-start">
@@ -129,6 +129,7 @@
                     </p>
                 </div>
             </form>
+
 
 
 
