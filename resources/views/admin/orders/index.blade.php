@@ -59,10 +59,10 @@
                                         @elseif($order->status === 'completed') bg-green-100 text-green-800
                                         @else bg-red-100 text-red-800
                                         @endif">
-                                    <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Tertunda</option>
-                                    <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Diproses</option>
-                                    <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Selesai</option>
-                                    <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
+                                    <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processed</option>
+                                    <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Completed</option>
+                                    <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                                 </select>
                             </form>
                         </td>
