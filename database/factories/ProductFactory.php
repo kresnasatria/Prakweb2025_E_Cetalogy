@@ -25,11 +25,11 @@ public function definition(): array
     return [
         'name' => ucfirst($name),
         'slug' => Str::slug($name),
-        'category_id' => Category::factory(), 
-        'price' => fake()->numberBetween(50000, 2000000), 
+        'category_id' => Category::factory(),
+        'price' => fake()->numberBetween(50000, 2000000),
         'stock' => fake()->numberBetween(10, 100),
         'description' => fake()->paragraph(),
-        'thumbnail' => fake()->imageUrl(400, 400, 'product', true),
+        'thumbnail' => 'https://picsum.photos/400/400?random=' . fake()->numberBetween(1, 1000),
     ];
 }
 }
