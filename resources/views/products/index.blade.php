@@ -262,15 +262,28 @@
 
                 window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
 
-                fetch(`{{ route('products.index') }}?${params}`, {
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+               fetch(`{{ route('products.index') }}?${params}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    document.getElementById('productGrid').innerHTML = data.html;
-                    document.getElementById('pagination').innerHTML = data.pagination;
+                    if (data.html !== undefined && data.pagination !== undefined) {
+                        document.getElementById('productGrid').innerHTML = data.html;
+                        document.getElementById('pagination').innerHTML = data.pagination;
+                    } else {
+                        console.error('Invalid response format:', data);
+                    }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => 
+                    console.error('Live search error:', error));
             }
         });
 
