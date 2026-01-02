@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Category;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
- */
+
 class ProductFactory extends Factory
 {
     /**
@@ -16,8 +14,7 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
-// Jangan lupa import: use Illuminate\Support\Str;
-// Import model: use App\Models\Category;
+
 
 public function definition(): array
 {
