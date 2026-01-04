@@ -105,8 +105,13 @@ class OrderController extends Controller
             OrderItem::create(array_merge(['order_id' => $order->id], $item));
             
             // Kurangi stok produk
-            Product::where('id', $item['product_id'])
-                ->decrement('stock', $item['quantity']);
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $product->decrement('stock', $item['quantity']);
+                // update status berdasar stok terbaru
+                $product->refresh();
+                $product->update(['status' => $product->stock > 0 ? 'available' : 'sold']);
+            }
         }
 
         // Clear session cart
@@ -131,8 +136,12 @@ class OrderController extends Controller
 
         // Kembalikan stok produk
         foreach ($order->orderItems as $item) {
-            Product::where('id', $item->product_id)
-                ->increment('stock', $item->quantity);
+            $product = Product::find($item->product_id);
+            if ($product) {
+                $product->increment('stock', $item->quantity);
+                $product->refresh();
+                $product->update(['status' => $product->stock > 0 ? 'available' : 'sold']);
+            }
         }
 
         $order->update(['status' => 'cancelled']);
