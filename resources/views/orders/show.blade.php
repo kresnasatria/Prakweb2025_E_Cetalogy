@@ -92,9 +92,9 @@
                 <p class="text-sm text-gray-600 mb-4">Scan QRIS di bawah ini menggunakan aplikasi e-wallet atau mobile banking Anda untuk menyelesaikan pembayaran.</p>
                 
                 <div class="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-xl">
-                    <img src="{{ asset('images/vikensa.jpeg') }}" 
+                    <img src="{{ asset('images/GetReloved.png') }}" 
                          alt="Scan QRIS untuk membayar" 
-                         class="w-64 h-auto border-4 border-white rounded-xl shadow-md">
+                         class="w-80 h-auto border-4 border-white rounded-xl shadow-md">
                     
                     <p class="text-sm font-medium text-gray-500 mt-4 uppercase tracking-wider">Total Pembayaran</p>
                     <p class="text-2xl font-bold text-blue-600">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
