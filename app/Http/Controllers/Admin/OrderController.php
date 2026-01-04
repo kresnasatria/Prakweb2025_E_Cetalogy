@@ -46,8 +46,12 @@ class OrderController extends Controller
         // Jika diubah ke cancelled dan sebelumnya bukan cancelled, kembalikan stok
         if ($newStatus === 'cancelled' && $oldStatus !== 'cancelled') {
             foreach ($order->orderItems as $item) {
-                Product::where('id', $item->product_id)
-                    ->increment('stock', $item->quantity);
+                $product = Product::find($item->product_id);
+                if ($product) {
+                    $product->increment('stock', $item->quantity);
+                    $product->refresh();
+                    $product->update(['status' => $product->stock > 0 ? 'available' : 'sold']);
+                }
             }
         }
 
@@ -64,8 +68,12 @@ class OrderController extends Controller
             
             // Kurangi stok
             foreach ($order->orderItems as $item) {
-                Product::where('id', $item->product_id)
-                    ->decrement('stock', $item->quantity);
+                $product = Product::find($item->product_id);
+                if ($product) {
+                    $product->decrement('stock', $item->quantity);
+                    $product->refresh();
+                    $product->update(['status' => $product->stock > 0 ? 'available' : 'sold']);
+                }
             }
         }
 

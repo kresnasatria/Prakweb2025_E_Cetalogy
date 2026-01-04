@@ -59,6 +59,9 @@ class ProductController extends Controller
             $validated['stock'] = 1; // minimal stok untuk available
         }
 
+        // sinkron status akhir mengikuti stok
+        $validated['status'] = ($validated['stock'] ?? 0) > 0 ? 'available' : 'sold';
+
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('products', 'public');
             $validated['thumbnail'] = '/storage/' . $path;
@@ -91,6 +94,10 @@ class ProductController extends Controller
             // kalau available, pastikan stok minimal 1
             $validated['stock'] = max((int) $product->stock, 1);
         }
+
+        // sinkron status akhir mengikuti stok
+        $finalStock = $validated['stock'] ?? $product->stock;
+        $validated['status'] = $finalStock > 0 ? 'available' : 'sold';
 
         DB::transaction(function () use ($request, $product, &$validated) {
 
