@@ -50,7 +50,7 @@
     @else
         <div class="bg-white rounded-lg shadow p-12 text-center">
             <p class="text-gray-500 text-lg mb-4">Anda belum memiliki pesanan</p>
-            <a href="{{ route('products.index') }}" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">Mulai Belanja</a>
+            <a href="{{ route('products.index') }}" class="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-700">Mulai Belanja</a>
         </div>
     @endif
 @endsection
